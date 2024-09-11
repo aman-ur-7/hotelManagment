@@ -8,7 +8,9 @@ const Index = () => {
     localStorage.setItem("REDIRECTING_ROUTES", data);
   }
   const REDIRECTING_ROUTES = localStorage.getItem("REDIRECTING_ROUTES");
+
   localStorage.clear(); // HAVE TO DELETE LATER
+  console.log(REDIRECTING_ROUTES);
 
   return (
     <div

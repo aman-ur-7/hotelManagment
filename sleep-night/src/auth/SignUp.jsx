@@ -14,10 +14,6 @@ const SignUp = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    if ((!name, !email, !age, !address, !password)) {
-      alert("Enter all fields");
-      window.location.reload();
-    }
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -25,7 +21,7 @@ const SignUp = () => {
     };
     try {
       const SIGNUP_RESPOND = await axios.post(
-        "http://localhost:5007/user/signup",
+        "http://localhost:5007/hotel/create",
         { name, email, age, address, password },
         config
       );
@@ -34,7 +30,9 @@ const SignUp = () => {
         navigate("/login");
       }
     } catch (error) {
+      alert(error.response.data);
       console.log(error);
+      window.location.reload();
     }
   };
 

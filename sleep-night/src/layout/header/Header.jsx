@@ -22,7 +22,6 @@ const Header = () => {
     <section className="header">
       <div>
         <h1>
-          {" "}
           <NavLink
             to="/"
             onClick={() => setName("home")}
