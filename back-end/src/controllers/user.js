@@ -30,4 +30,21 @@ const REGISTER_USER = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { REGISTER_USER };
+const READ_USER = asyncHandler(async (req, res) => {
+  try {
+    const { password, email } = req.body;
+    if (password && email) {
+      const IS_USER_EXIST = await USER_DB.findOne({ email, password });
+      if (IS_USER_EXIST) {
+        res.status(200).send(IS_USER_EXIST);
+      } else {
+        res.send("use the correct password");
+      }
+    } else {
+      res.send("Enter all the fields");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+module.exports = { REGISTER_USER, READ_USER };

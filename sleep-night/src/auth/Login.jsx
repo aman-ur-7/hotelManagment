@@ -20,7 +20,7 @@ const Login = () => {
     }
     try {
       const LOGIN_RESPOND = await axios.post(
-        "http://localhost:5007/user/login",
+        "http://localhost:5007/hotel/read",
         {
           email,
           password,
@@ -36,7 +36,7 @@ const Login = () => {
         // sessionStorage.setItem("username", LOGIN_RESPOND);
       }
     } catch (error) {
-      alert("Data field is incorrect");
+      alert("Use correct password");
       window.location.reload();
     }
   };

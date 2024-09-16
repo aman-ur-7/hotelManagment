@@ -1,13 +1,47 @@
 import React, { useState } from "react";
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+import axios from "axios";
 
 const BussinessTemplate = () => {
-  const [name, setName] = useState();
-  const [companyName, setCompanyName] = useState();
-  const [email, setEmail] = useState();
-  const [number, setNumber] = useState();
-  const [city, setCity] = useState();
+  const [name, setName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState(0);
+  const [city, setCity] = useState("");
   const [image, setImage] = useState([]);
+
+  const BF_SUBMIT = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("image", image);
+      formData.append("name", name);
+      formData.append("company", companyName);
+      formData.append("email", email);
+      formData.append("number", number);
+      formData.append("city", city);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const RESPOND = await axios.post(
+        "http://localhost:5007/hotel/upload",
+        formData,
+        config
+      );
+
+      if (RESPOND) {
+        console.log("Success:", RESPOND.data);
+      }
+    } catch (error) {
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
 
   return (
     <Box>
@@ -54,6 +88,7 @@ const BussinessTemplate = () => {
               width: "60%",
               gap: "10px",
             }}
+            onSubmit={BF_SUBMIT}
           >
             <TextField
               id="outlined-basic"
@@ -93,6 +128,7 @@ const BussinessTemplate = () => {
               accept=".png , .jpg , .jpeg"
               onChange={(e) => setImage(e.target.files[0])}
             />
+            <Button type="submit">Submit</Button>
           </form>
         </Box>
       </Box>
