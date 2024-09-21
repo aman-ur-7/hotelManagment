@@ -9,6 +9,7 @@ const APP = IMPORT_CONST.APP;
 APP.use(cors());
 APP.use(express.json());
 APP.use(express.static("public"));
+APP.use("/images", express.static("./upload"));
 APP.use("/hotel", Router);
 IMPORT_FUNC;
 

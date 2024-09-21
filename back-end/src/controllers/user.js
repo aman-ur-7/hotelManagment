@@ -1,4 +1,5 @@
 const USER_DB = require("../model/userSchema");
+const CLIENT_DB = require("../model/clientSchema");
 const asyncHandler = require("express-async-handler");
 
 const REGISTER_USER = asyncHandler(async (req, res) => {
@@ -47,4 +48,15 @@ const READ_USER = asyncHandler(async (req, res) => {
     console.error(error);
   }
 });
-module.exports = { REGISTER_USER, READ_USER };
+
+const GET_IMAGE = asyncHandler(async (req, res) => {
+  try {
+    const RESPONSE = await CLIENT_DB.find();
+    if (RESPONSE) {
+      res.send(RESPONSE);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+module.exports = { REGISTER_USER, READ_USER, GET_IMAGE };

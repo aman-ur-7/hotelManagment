@@ -3,7 +3,7 @@ const Router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const CLIENT_DB = require("../model/clientSchema");
-const { REGISTER_USER, READ_USER } = require("../controllers/user");
+const { REGISTER_USER, READ_USER, GET_IMAGE } = require("../controllers/user");
 
 // Configure multer storage
 const storage = multer.diskStorage({
@@ -19,6 +19,7 @@ const upload = multer({ storage: storage });
 // Routes
 Router.post("/create", REGISTER_USER);
 Router.post("/read", READ_USER);
+Router.get("/getimage", GET_IMAGE);
 
 Router.post("/upload", upload.single("image"), async (req, res) => {
   try {
