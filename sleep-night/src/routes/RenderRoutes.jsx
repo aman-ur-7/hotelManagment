@@ -6,6 +6,7 @@ import Home from "../layout/content/Home";
 import SignUp from "../auth/SignUp";
 const Login = lazy(() => import("../auth/Login"));
 const Cities = lazy(() => import("../layout/header/Cities"));
+const Payment = lazy(() => import("../layout/content/components/Payment"));
 
 const RenderRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const RenderRoutes = () => {
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/payment" element={<Payment />} />
         </Routes>
       </Suspense>
     </>
